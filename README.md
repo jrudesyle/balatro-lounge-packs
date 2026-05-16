@@ -1,21 +1,21 @@
 # Balatro Lounge Packs 🎰🎵
 
-Three Vegas casino-themed music packs for Balatro, featuring royalty-free lounge, jazz, and electronic tracks.
+A Balatro mod that lets you switch between three Vegas casino-themed music packs directly from the mod menu.
 
-## 📦 Available Packs
+## 📦 Music Themes
 
 ### 1. Vegas Classic (Chiptune Lounge Jazz)
-**Vibe:** Rat Pack era, swing jazz, retro casino
+**Vibe:** Rat Pack era, swing jazz, retro casino  
 - Bossa Antigua (Kevin MacLeod)
 
 ### 2. Vegas Modern (Synthwave/Electronic)
-**Vibe:** High-energy electronic, modern casino floor
+**Vibe:** High-energy electronic, modern casino floor  
 - Pixel Peeker Polka (Kevin MacLeod)
 - Electrodoodle (Kevin MacLeod)
 - Chill Wave (Kevin MacLeod)
 
 ### 3. Vegas Lounge (Smooth/Chill)
-**Vibe:** Cocktail lounge, smooth background music
+**Vibe:** Cocktail lounge, smooth background music  
 - Lobby Time (Kevin MacLeod)
 - Smooth Lovin (Kevin MacLeod)
 
@@ -23,49 +23,37 @@ Three Vegas casino-themed music packs for Balatro, featuring royalty-free lounge
 
 ## 🎮 Installation
 
-### Quick Install (Copy-Paste Ready)
+### Quick Install (Steam Deck / Arch Linux)
 
-**Option 1: Replace Balatro's built-in music** (requires extracting game files first)
-- See "Advanced Installation" below
+1. **Install Steamodded** (if you haven't already)
+   - Follow the [Steamodded installation guide](https://github.com/Steamopollys/Steamodded)
 
-**Option 2: Use with Music Replacement Mods**
-- Compatible with any Balatro music mod loader
-- Drop `.ogg` files into mod's music folder
-
-### Advanced Installation
-
-1. **Extract Balatro's music files**  
-   Balatro packs music inside `Balatro.exe`. You'll need to extract it first.
-
+2. **Copy mod files to Balatro mods folder:**
    ```bash
-   # Method 1: Using 7zip
-   7z x ~/.local/share/Steam/steamapps/common/Balatro/Balatro.exe -o~/balatro-extracted
-
-   # Method 2: Manual LÖVE extraction
-   dd if=~/.local/share/Steam/steamapps/common/Balatro/Balatro.exe \
-      of=~/balatro.love bs=1 \
-      skip=$(grep -oba "PK" ~/.local/share/Steam/steamapps/common/Balatro/Balatro.exe | head -1 | cut -d: -f1)
-   unzip ~/balatro.love -d ~/balatro-extracted
+   # On Arch Linux:
+   cp -r ~/projects/balatro-lounge-packs ~/.local/share/Steam/steamapps/compatdata/2379780/pfx/drive_c/users/steamuser/AppData/Roaming/Balatro/Mods/
+   
+   # On Steam Deck:
+   cp -r ~/projects/balatro-lounge-packs /home/deck/.local/share/Steam/steamapps/compatdata/2379780/pfx/drive_c/users/steamuser/AppData/Roaming/Balatro/Mods/
    ```
 
-2. **Backup original music**
-   ```bash
-   mkdir ~/balatro-music-backup
-   cp -r ~/balatro-extracted/resources/music/* ~/balatro-music-backup/
-   ```
+3. **Launch Balatro** via Steamodded
 
-3. **Install your chosen pack**
-   ```bash
-   # Choose one:
-   cp vegas-classic/*.ogg ~/balatro-extracted/resources/music/
-   # OR
-   cp vegas-modern/*.ogg ~/balatro-extracted/resources/music/
-   # OR
-   cp vegas-lounge/*.ogg ~/balatro-extracted/resources/music/
-   ```
+4. **Configure music theme:**
+   - Open **Mods Menu** in-game
+   - Find **Lounge Packs**
+   - Select your music theme: Classic / Modern / Lounge
+   - Click **Save**
+   - **Restart Balatro** to hear the new music
 
-4. **Repack and launch**  
-   (Instructions vary by OS—check Balatro modding guides)
+---
+
+## ⚙️ Configuration
+
+**In-game mod menu:**
+- Music Theme dropdown (Classic / Modern / Lounge)
+- Selection persists between launches
+- Restart game to apply music changes
 
 ---
 
