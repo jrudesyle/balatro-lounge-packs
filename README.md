@@ -50,31 +50,17 @@ A Balatro mod that lets you switch between three Vegas casino-themed music packs
 
 ## ⚙️ Configuration
 
-**Step 1: Pick your music theme in-game**
+**Super easy—no terminal commands needed:**
+
 1. Launch Balatro
 2. Open **Mods Menu**
 3. Find **Lounge Packs**
-4. Select your theme: Classic / Modern / Lounge
-5. Click **Save**
-6. Close Balatro
+4. Select your theme: **Classic / Modern / Lounge**
+5. Click **Save** (music files install automatically!)
+6. You'll see: "✅ Music installed! Restart Balatro"
+7. **Restart Balatro** to hear your new music!
 
-**Step 2: Install the music files**
-```bash
-cd ~/.local/share/Steam/steamapps/compatdata/2379780/pfx/drive_c/users/steamuser/AppData/Roaming/Balatro/Mods/balatro-lounge-packs
-./install-music.sh
-```
-
-**Step 3: Restart Balatro** to hear your new music!
-
----
-
-## 🔧 How It Works
-
-- The mod config menu lets you **choose** which theme you want
-- The `install-music.sh` script **copies** the `.ogg` files from your chosen pack into Balatro's music folder
-- You need to restart Balatro for music changes to take effect
-
-**Why two steps?** Balatro loads music at startup from its internal files. Steamodded mods can't hot-swap audio at runtime, so we use a helper script to update the files between launches.
+That's it! The mod automatically copies the music files when you save.
 
 ---
 

@@ -39,11 +39,51 @@ local MUSIC_PACKS = {
 G.FUNCS.lp_set_pack = function(args)
     local packs = {"classic", "modern", "lounge"}
     MOD.config.selected_pack = packs[args.to_key]
-    SMODS.save_mod_config(MOD)
 end
 
 G.FUNCS.lp_save = function(e)
     SMODS.save_mod_config(MOD)
+    
+    -- Automatically install music files when saving
+    local selected = MOD.config.selected_pack or "classic"
+    local pack_folder = "vegas-" .. selected
+    
+    -- Get mod directory
+    local mod_path = (SMODS.MODS_DIR or "") .. "/balatro-lounge-packs/"
+    local balatro_music = os.getenv("HOME") .. "/balatro-extracted/resources/music/"
+    
+    -- Check if Balatro is extracted
+    local f = io.open(balatro_music .. "1-01.ogg", "r")
+    if not f then
+        -- Show error notification
+        attention_text({
+            text = "⚠️ Balatro not extracted! See mod README",
+            scale = 0.4,
+            hold = 5.0,
+            align = 'cm',
+            major = G.ROOM_ATTACH,
+            offset = {x = 0, y = 2},
+            colour = G.C.RED,
+        })
+    else
+        f:close()
+        
+        -- Copy music files via shell command
+        local cmd = string.format('cp "%s%s"/*.ogg "%s"', mod_path, pack_folder, balatro_music)
+        os.execute(cmd)
+        
+        -- Show success notification
+        attention_text({
+            text = "✅ Music installed! Restart Balatro",
+            scale = 0.4,
+            hold = 4.0,
+            align = 'cm',
+            major = G.ROOM_ATTACH,
+            offset = {x = 0, y = 2},
+            colour = G.C.GREEN,
+        })
+    end
+    
     G.FUNCS.exit_overlay_menu(e)
 end
 
@@ -78,9 +118,17 @@ MOD.config_tab = function()
             {n = G.UIT.R, config = {align = "cm", padding = 0.1},
              nodes = {
                 {n = G.UIT.T, config = {
-                    text = "⚠️ Restart game to hear music change",
+                    text = "Music installs automatically when you click Save",
                     scale = 0.35,
                     colour = G.C.UI.TEXT_LIGHT
+                }}
+            }},
+            {n = G.UIT.R, config = {align = "cm", padding = 0.05},
+             nodes = {
+                {n = G.UIT.T, config = {
+                    text = "Restart Balatro to hear new music",
+                    scale = 0.35,
+                    colour = G.C.ORANGE
                 }}
             }},
             {n = G.UIT.R, config = {align = "cm", padding = 0.2},
